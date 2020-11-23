@@ -1,0 +1,29 @@
+
+{
+    "birth_first_date": "1/1/1940 0:00",
+    "date_format": "%m/%d/%Y %H:%M",
+    "max_hires_for_client": 10,
+    "max_hire_length_months": 12,
+    "start_hire_minus_delta_days": 7,
+    "min_hire_time_hours": 1,
+
+    "female_names_file": "data_helpers/female_names.txt",
+    "male_names_file": "data_helpers/male_names.txt",
+    "surnames_file": "data_helpers/surnames.txt",
+    "files_examples_num": 1000,
+
+    "iterations": 3000,
+
+    "tables": {
+        "client": {
+            "data_file": "Client.csv",
+            "keys": ["name","surname","birthDate","gender","maritialStatus","numberOfChildrens",
+                "priceFactor"]
+        },
+        "hires": {
+            "data_file": "Hire.csv",
+            "keys": ["hireStartTime","hireEndTime","carId","clientId","clientSatisfaction","roadLength",
+                "repairsCost"]
+        }
+    }
+}
