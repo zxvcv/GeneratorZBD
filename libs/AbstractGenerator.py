@@ -1,5 +1,5 @@
 import json
-from abstract import abstract
+from .abstract import abstract
 
 
 class AbstractGenerator:

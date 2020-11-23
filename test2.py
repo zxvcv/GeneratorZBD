@@ -1,22 +1,16 @@
-from libs.GeneratorCSV import GeneratorCSV
-from datetime import datetime
-from datetime import timedelta
-import random
 import time
 import json
+import random
+from datetime import datetime
+from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
-from lib.generators.CSV.ClientTableGenerator import ClientTableGenerator
+from libs.generators.CSV.GeneratorCSV import GeneratorCSV
+
 
 if __name__ == "__main__":
-    settings = []
-    with open("settings.json", "r") as f:
-        settings = json.loads(f.read())
-
-    generatorCSV = ClientTableGenerator(settings, "client")
+    generatorCSV = GeneratorCSV("libs/generators/CSV/settings.json")
     
-    
-    #for i in range(50):
-    #    print(float(random.randrange(50, 150)) / 100)
+    generatorCSV.generate()
 
     print("Done")

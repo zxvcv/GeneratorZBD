@@ -8,12 +8,12 @@ from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
 from ...helpers import get_file_lines, str_time_prop
-from AbstractTableGenerator import AbstractTableGenerator
+from ...AbstractTableGenerator import AbstractTableGenerator
 
 
 class HireTableGenerator(AbstractTableGenerator):
     def __init__(self, settings, tableName):
-        super.__init__(settings, tableName)
+        super().__init__(settings, tableName)
 
         # helpers
         self._date_format = self.settings["date_format"]
@@ -23,8 +23,8 @@ class HireTableGenerator(AbstractTableGenerator):
 
 
     def __get_id(self):
-        self.counterID += 1
-        return self.counterID
+        self._counterID += 1
+        return self._counterID
 
 
     def __get_hireStartTime(self, clientBirthDate):
@@ -34,7 +34,7 @@ class HireTableGenerator(AbstractTableGenerator):
 
 
     def __get_hireEndTime(self, hireStartTime):
-        helper = self.__str_time_prop(hireStartTime + relativedelta(hours=self._min_hire_time_hours), 
+        helper = str_time_prop(hireStartTime + relativedelta(hours=self._min_hire_time_hours), 
             hireStartTime + relativedelta(months=self._max_hire_length_months), random.random())
         hireEndTime = datetime.now() if helper > datetime.now() else  helper
         return hireEndTime
@@ -102,7 +102,7 @@ class HireTableGenerator(AbstractTableGenerator):
 
 
     def table_write(self, data):
-        self.hireWriter.writerow([
+        self._writer.writerow([
             data["hireStartTime"].strftime(self._date_format),
             data["hireEndTime"].strftime(self._date_format),
             data["carId"],

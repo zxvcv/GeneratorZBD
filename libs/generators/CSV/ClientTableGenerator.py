@@ -8,12 +8,12 @@ from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
 from ...helpers import get_file_lines, str_time_prop
-from AbstractTableGenerator import AbstractTableGenerator
+from ...AbstractTableGenerator import AbstractTableGenerator
 
 
 class ClientTableGenerator(AbstractTableGenerator):
     def __init__(self, settings, tableName):
-        super.__init__(settings, tableName)
+        super().__init__(settings, tableName)
 
         # helpers
         self._date_format = self.settings["date_format"]
@@ -22,8 +22,8 @@ class ClientTableGenerator(AbstractTableGenerator):
 
 
     def __get_id(self):
-        self.counterID += 1
-        return self.counterID
+        self._counterID += 1
+        return self._counterID
 
 
     def __get_name(self, gender):
@@ -94,7 +94,7 @@ class ClientTableGenerator(AbstractTableGenerator):
 
 
     def table_write(self, data):
-        self.clientWriter.writerow([
+        self._writer.writerow([
             data["name"],
             data["surname"],
             data["birthDate"].strftime(self._date_format),

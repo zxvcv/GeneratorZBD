@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 
-def get_file_lines(self, file_name, lines_to_read):
+def get_file_lines(file_name, lines_to_read):
     found_lines = []
     with open(file_name, "r") as file:
         for position, line in enumerate(file):
@@ -10,7 +10,7 @@ def get_file_lines(self, file_name, lines_to_read):
     return found_lines
 
 
-def str_time_prop(self, start, end, prop):
+def str_time_prop(start, end, prop):
     """
         Get a time at a proportion of a range of two formatted times.
 

@@ -13,17 +13,17 @@ from datetime import datetime
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
-from AbstractGenerator import AbstractGenerator
-from HireTableGenerator import HireTableGenerator
-from ClientTableGenerator import ClientTableGenerator
+from ...AbstractGenerator import AbstractGenerator
+from .HireTableGenerator import HireTableGenerator
+from .ClientTableGenerator import ClientTableGenerator
 
 
 class GeneratorCSV(AbstractGenerator):
     def __init__(self, settingsFile):
-        super.__init__(settingsFile)
+        super().__init__(settingsFile)
 
         self.clientGenerator = ClientTableGenerator(self.settings, "client")
-        self.hireGenerator = HireTableGenerator(self.settings, "hire")
+        self.hireGenerator = HireTableGenerator(self.settings, "hires")
 
         # helpers
         self._max_hires_for_client = self.settings["max_hires_for_client"]
@@ -33,7 +33,7 @@ class GeneratorCSV(AbstractGenerator):
         for i in tqdm(range(self.settings["iterations"])):
             client = self.clientGenerator.generate()
 
-            hires_for_client = random.randrange(1, _max_hires_for_client + 1)
+            hires_for_client = random.randrange(1, self._max_hires_for_client + 1)
             for nHire in range(hires_for_client):
                 inputsHire = {
                     "clientBirthDate": client["birthDate"],
