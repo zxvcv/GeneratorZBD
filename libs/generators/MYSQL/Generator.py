@@ -21,7 +21,8 @@ from .CarTableGenerator import CarTableGenerator
 from .CarRentalTableGenerator import CarRentalTableGenerator
 from .CostTableGenerator import CostTableGenerator
 from .CarCostTableGenerator import CarCostTableGenerator
-
+from .RepairTableGenerator import RepairTableGenerator
+from .RentalRepairTableGenerator import RentalRepairTableGenerator
 
 class Generator(AbstractGenerator):
     def __init__(self, settingsFile):
@@ -34,14 +35,19 @@ class Generator(AbstractGenerator):
         self.carRentalGenerator = CarRentalTableGenerator(self.settings, "car_rental")
         self.costGenerator = CostTableGenerator(self.settings, "costs")
         self.carCostGenerator = CarCostTableGenerator(self.settings, "car_cost")
+        self.repairGenerator = RepairTableGenerator(self.settings, "repairs")
+        self.rentalRepairGenerator = RentalRepairTableGenerator(self.settings, "rental_repair")
 
         # helpers
         self._max_rentals_for_customer = self.settings["max_rentals_for_customer"]
         self._cars_num = self.settings["cars_num"]
+        self._repairs_num = self.settings["repairs_num"]
         self._iterations = self.settings["iterations"]
 
 
     def generate(self):
+        rents_num = 0
+
         print("Rentals & Customers generating...")
         for i in tqdm(range(self._iterations)):
             customer = self.customerGenerator.generate()
@@ -67,7 +73,8 @@ class Generator(AbstractGenerator):
                 }
                 carrental = self.carRentalGenerator.generate(inputsCarRental)
                 self.carRentalGenerator.table_write(carrental)
-            
+
+                rents_num += 1
             self.customerGenerator.table_write(customer)
         
         print("Cars & Costs generating...")
@@ -84,3 +91,15 @@ class Generator(AbstractGenerator):
             }
             carcost = self.carCostGenerator.generate(inputsCarCost)
             self.carCostGenerator.table_write(carcost)
+        
+        print("Repairs generating...")
+        for i in tqdm(range(self._repairs_num)):
+            repair = self.repairGenerator.generate()
+            self.repairGenerator.table_write(repair)
+
+            inputsRentalRepair = {
+                "rental_uuid": random.randrange(rents_num),
+                "repair_uuid": rental["uuid"],
+            }
+            rentalrepair = self.rentalRepairGenerator.generate(inputsRentalRepair)
+            self.rentalRepairGenerator.table_write(rentalrepair)

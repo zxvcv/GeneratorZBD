@@ -22,8 +22,11 @@
 
     "cost_types": ["CLEAN", "BASIC_FIX", "RENEW", "RENT_DAY", "RENT_WEEK", "RENT_MONTH", "BUY"],
 
+    "by_who": ["WORKER", "SERVICE", "CLIENT"],
+
     "iterations": 3000,
     "cars_num": 100,
+    "repairs_num": 50,
 
     "tables": {
         "customer": {
@@ -57,6 +60,14 @@
         "car_cost": {
             "data_file": "MYSQL_generated/Car_Cost.csv",
             "keys": ["car_uuid", "cost_uuid"]
+        },
+        "repairs": {
+            "data_file": "MYSQL_generated/Repair.csv",
+            "keys": []
+        },
+        "rental_repair": {
+            "data_file": "MYSQL_generated/Rental_Repair.csv",
+            "keys": ["rental_uuid", "repair_uuid"]
         }
     }
 }
