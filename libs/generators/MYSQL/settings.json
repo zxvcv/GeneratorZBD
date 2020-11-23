@@ -63,7 +63,7 @@
         },
         "repairs": {
             "data_file": "MYSQL_generated/Repair.csv",
-            "keys": []
+            "keys": ["uuid", "by_who", "coast", "repair_date", "description"]
         },
         "rental_repair": {
             "data_file": "MYSQL_generated/Rental_Repair.csv",

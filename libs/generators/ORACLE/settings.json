@@ -1,0 +1,58 @@
+
+{
+    "birth_first_date": "1/1/1940 0:00",
+    "date_format": "%m/%d/%Y %H:%M",
+    "max_rentals_for_customer": 10,
+    "max_hire_length_months": 12,
+    "start_hire_minus_delta_days": 7,
+    "min_hire_time_hours": 1,
+
+    "female_names_file": "data_helpers/female_names.txt",
+    "male_names_file": "data_helpers/male_names.txt",
+    "surnames_file": "data_helpers/surnames.txt",
+    "files_examples_num": 1000,
+
+    "cars_file": "data_helpers/cars.txt",
+    "cars_examples_num": 50,
+    "cars_body_types": ["MINIVAN", "SEDAN", "HATCHBACK", "CONVERTIBLE", "SPORTS", "COUPE"],
+    "cars_colors": ["White", "Silver", "Black", "Dark Blue", "Dark Gray", "Red", "Dark Green", "Light Brown"],
+
+    "fuel_types": ["GASOLINE", "DIESEL", "ETHANOL", "BIODIESEL", "WATER"],
+
+    "cost_types": ["CLEAN", "BASIC_FIX", "RENEW", "RENT_DAY", "RENT_WEEK", "RENT_MONTH", "BUY"],
+
+    "iterations": 3000,
+    "cars_num": 100,
+
+    "tables": {
+        "customer": {
+            "data_file": "ORACLE_generated/Customer.csv",
+            "keys": ["customerid", "name", "surname", "email", "married", "children", "gender", "birthDate",
+                "phonenumber"]
+        },
+        "rental": {
+            "data_file": "ORACLE_generated/Rental.csv",
+            "keys": ["rentalid", "totaltime", "period", "satisfactionrating"]
+        },
+        "customer_rental": {
+            "data_file": "ORACLE_generated/Customer_Rental.csv",
+            "keys": ["customerid", "rentalid"]
+        },
+        "cars": {
+            "data_file": "ORACLE_generated/Car.csv",
+            "keys": ["carid", "brand", "model", "bodytype", "color", "fueltype", "maxspeed", "acceleration"]
+        },
+        "car_rential": {
+            "data_file": "ORACLE_generated/Car_Rental.csv",
+            "keys": ["carid", "rentalid"]
+        },
+        "costs": {
+            "data_file": "ORACLE_generated/Cost.csv",
+            "keys": ["costid", "costtype", "amount", "reason"]
+        },
+        "car_cost": {
+            "data_file": "ORACLE_generated/Car_Cost.csv",
+            "keys": ["carid", "costid"]
+        }
+    }
+}
