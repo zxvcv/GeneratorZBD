@@ -40,7 +40,7 @@ class Generator(AbstractGenerator):
         fuel = self.fuelGenerator.generate()
         self.fuelGenerator.table_write(fuel)
 
-        print("Cars & Clients generating...")
+        print("Cars generating...")
         for i in tqdm(range(self._cars_num)):
             car = self.carGenerator.generate()
             self.carGenerator.table_write(car)

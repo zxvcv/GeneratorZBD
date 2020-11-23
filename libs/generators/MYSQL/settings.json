@@ -3,13 +3,6 @@
     "birth_first_date": "1/1/1940 0:00",
     "date_format": "%m/%d/%Y %H:%M",
     "max_rentals_for_customer": 10,
-
-
-
-
-
-
-
     "max_hire_length_months": 12,
     "start_hire_minus_delta_days": 7,
     "min_hire_time_hours": 1,
@@ -21,15 +14,13 @@
 
     "cars_file": "data_helpers/cars.txt",
     "cars_examples_num": 50,
-    "cars_body_types": ["sedan", "coupe", "hatchback"],
+    "cars_body_types": ["MINIVAN", "SEDAN", "STATION WAGON", "HATCHBACK", "CONVERTIBLE", "SPORT UTILITY VEHICLE",
+        "SPORTS", "COUPE"],
     "cars_colors": ["White", "Silver", "Black", "Dark Blue", "Dark Gray", "Red", "Dark Green", "Light Brown"],
 
-    "fuel_types": [
-        { "id": 0, "name": "PB95", "cost": "4.81" },
-        { "id": 1, "name": "PB98", "cost": "5.12" },
-        { "id": 2, "name": "ON", "cost": "4.64" },
-        { "id": 3, "name": "LPG", "cost": "2.31" }
-    ],
+    "fuel_types": ["GASOLINE", "DIESEL", "ETHANOL", "NATURAL GAS", "BIODIESEL", "ELECTRO", "WATER", "WATER_ELECTRO"],
+
+    "cost_types": ["CLEAN", "BASIC_FIX", "RENEW", "RENT_DAY", "RENT_WEEK", "RENT_MONTH", "BUY"],
 
     "iterations": 3000,
     "cars_num": 100,
@@ -44,6 +35,28 @@
             "data_file": "MYSQL_generated/Rental.csv",
             "keys": ["uuid", "total_time", "from_date", "to_date", "road_total_limit_length",
                 "road_daily_limit_length", "total_road_length", "satisfaction_rating"]
+        },
+        "customer_rental": {
+            "data_file": "MYSQL_generated/Customer_Rental.csv",
+            "keys": ["customer_uuid", "rental_uuid"]
+        },
+        "cars": {
+            "data_file": "MYSQL_generated/Car.csv",
+            "keys": ["uuid", "brand", "model", "buying_data", "last_check_date", "last_repair_date", "body_type",
+                "color", "fuel_type", "max_speed", "acceleration"]
+        },
+        "car_rental": {
+            "data_file": "MYSQL_generated/Car_Rental.csv",
+            "keys": ["car_uuid", "rental_uuid"]
+        },
+        "costs": {
+            "data_file": "MYSQL_generated/Cost.csv",
+            "keys": ["uuid", "brand", "model", "buying_data", "last_check_date", "last_repair_date", "body_type",
+                "color", "fuel_type", "max_speed", "acceleration"]
+        },
+        "car_cost": {
+            "data_file": "MYSQL_generated/Car_Cost.csv",
+            "keys": ["car_uuid", "cost_uuid"]
         }
     }
 }
