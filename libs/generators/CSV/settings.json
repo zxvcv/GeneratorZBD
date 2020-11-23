@@ -12,18 +12,40 @@
     "surnames_file": "data_helpers/surnames.txt",
     "files_examples_num": 1000,
 
+    "cars_file": "data_helpers/cars.txt",
+    "cars_examples_num": 50,
+    "cars_body_types": ["sedan", "coupe", "hatchback"],
+    "cars_colors": ["White", "Silver", "Black", "Dark Blue", "Dark Gray", "Red", "Dark Green", "Light Brown"],
+
+    "fuel_types": [
+        { "id": 0, "name": "PB95", "cost": "4.81" },
+        { "id": 1, "name": "PB98", "cost": "5.12" },
+        { "id": 2, "name": "ON", "cost": "4.64" },
+        { "id": 3, "name": "LPG", "cost": "2.31" }
+    ],
+
     "iterations": 3000,
+    "cars_num": 100,
 
     "tables": {
         "client": {
-            "data_file": "Client.csv",
+            "data_file": "CSV_generated/Client.csv",
             "keys": ["name","surname","birthDate","gender","maritialStatus","numberOfChildrens",
                 "priceFactor"]
         },
         "hires": {
-            "data_file": "Hire.csv",
+            "data_file": "CSV_generated/Hire.csv",
             "keys": ["hireStartTime","hireEndTime","carId","clientId","clientSatisfaction","roadLength",
                 "repairsCost"]
+        },
+        "cars": {
+            "data_file": "CSV_generated/Car.csv",
+            "keys": ["id", "model", "brand", "bodyType", "color", "fuelId", "maxSpeed", "rentalPrice",
+                "theftProbability", "insuranceCost", "otherCosts", "dailyHireCost"]
+        },
+        "fuels": {
+            "data_file": "CSV_generated/Fuel.csv",
+            "keys": ["id", "name", "cost"]
         }
     }
 }

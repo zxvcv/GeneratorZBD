@@ -16,6 +16,8 @@ from dateutil.relativedelta import relativedelta
 from ...AbstractGenerator import AbstractGenerator
 from .HireTableGenerator import HireTableGenerator
 from .ClientTableGenerator import ClientTableGenerator
+from .CarTableGenerator import CarTableGenerator
+from .FuelTableGenerator import FuelTableGenerator
 
 
 class GeneratorCSV(AbstractGenerator):
@@ -24,13 +26,27 @@ class GeneratorCSV(AbstractGenerator):
 
         self.clientGenerator = ClientTableGenerator(self.settings, "client")
         self.hireGenerator = HireTableGenerator(self.settings, "hires")
+        self.carGenerator = CarTableGenerator(self.settings, "cars")
+        self.fuelGenerator = FuelTableGenerator(self.settings, "fuels")
 
         # helpers
         self._max_hires_for_client = self.settings["max_hires_for_client"]
+        self._cars_num = self.settings["cars_num"]
+        self._iterations = self.settings["iterations"]
 
 
     def generate(self):
-        for i in tqdm(range(self.settings["iterations"])):
+        print("Fuel generating...")
+        fuel = self.fuelGenerator.generate()
+        self.fuelGenerator.table_write(fuel)
+
+        print("Cars & Clients generating...")
+        for i in tqdm(range(self._cars_num)):
+            car = self.carGenerator.generate()
+            self.carGenerator.table_write(car)
+
+        print("Hires & Clients generating...")
+        for i in tqdm(range(self._iterations)):
             client = self.clientGenerator.generate()
 
             hires_for_client = random.randrange(1, self._max_hires_for_client + 1)
@@ -38,7 +54,7 @@ class GeneratorCSV(AbstractGenerator):
                 inputsHire = {
                     "clientBirthDate": client["birthDate"],
                     "clientID": client["id"],
-                    "carID": 0
+                    "carID": random.randrange(self._cars_num)
                 }
                 hire = self.hireGenerator.generate(inputsHire)
                 self.hireGenerator.table_write(hire)
