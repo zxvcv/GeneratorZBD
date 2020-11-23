@@ -1,15 +1,26 @@
-from libs.GeneratorCSV import GeneratorCSV
+import time
+import json
+import random
 from datetime import datetime
 from datetime import timedelta
-import random
-import time
 from dateutil.relativedelta import relativedelta
+from libs.generators.CSV.Generator import Generator as GeneratorCSV
+from libs.generators.MYSQL.Generator import Generator as GeneratorMYSQL
+#from libs.generators.ORACLE.Generator import Generator as GeneratorORACLE
+
 
 if __name__ == "__main__":
-    generatorCSV = GeneratorCSV("settings.json")
-    generatorCSV.generate()
-    
-    #for i in range(50):
-    #    print(float(random.randrange(50, 150)) / 100)
+    #print("##################### CSV generation #####################")
+    #generatorCSV = GeneratorCSV("libs/generators/CSV/settings.json")
+    #generatorCSV.generate()
+    #print("Done")
 
+    print("##################### MYSQL generation ###################")
+    generatorMYSQL = GeneratorMYSQL("libs/generators/MYSQL/settings.json")
+    generatorMYSQL.generate()
     print("Done")
+
+    #print("##################### ORACLE generation ##################")
+    #generatorORACLE = libs.generators.ORACLE.Generator("libs/generators/ORACLE/settings.json")
+    #generator.generate()
+    #print("Done")

@@ -20,7 +20,7 @@ from .CarTableGenerator import CarTableGenerator
 from .FuelTableGenerator import FuelTableGenerator
 
 
-class GeneratorCSV(AbstractGenerator):
+class Generator(AbstractGenerator):
     def __init__(self, settingsFile):
         super().__init__(settingsFile)
 

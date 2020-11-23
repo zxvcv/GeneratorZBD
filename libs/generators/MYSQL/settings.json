@@ -1,0 +1,49 @@
+
+{
+    "birth_first_date": "1/1/1940 0:00",
+    "date_format": "%m/%d/%Y %H:%M",
+    "max_rentals_for_customer": 10,
+
+
+
+
+
+
+
+    "max_hire_length_months": 12,
+    "start_hire_minus_delta_days": 7,
+    "min_hire_time_hours": 1,
+
+    "female_names_file": "data_helpers/female_names.txt",
+    "male_names_file": "data_helpers/male_names.txt",
+    "surnames_file": "data_helpers/surnames.txt",
+    "files_examples_num": 1000,
+
+    "cars_file": "data_helpers/cars.txt",
+    "cars_examples_num": 50,
+    "cars_body_types": ["sedan", "coupe", "hatchback"],
+    "cars_colors": ["White", "Silver", "Black", "Dark Blue", "Dark Gray", "Red", "Dark Green", "Light Brown"],
+
+    "fuel_types": [
+        { "id": 0, "name": "PB95", "cost": "4.81" },
+        { "id": 1, "name": "PB98", "cost": "5.12" },
+        { "id": 2, "name": "ON", "cost": "4.64" },
+        { "id": 3, "name": "LPG", "cost": "2.31" }
+    ],
+
+    "iterations": 3000,
+    "cars_num": 100,
+
+    "tables": {
+        "customer": {
+            "data_file": "MYSQL_generated/Customer.csv",
+            "keys": ["uuid", "name", "second_name", "surname", "e_mail", "civil_status", "kids_number",
+                "gender", "age", "phone_number", "accound_date_create", "last_login"]
+        },
+        "rental": {
+            "data_file": "MYSQL_generated/Rental.csv",
+            "keys": ["uuid", "total_time", "from_date", "to_date", "road_total_limit_length",
+                "road_daily_limit_length", "total_road_length", "satisfaction_rating"]
+        }
+    }
+}
