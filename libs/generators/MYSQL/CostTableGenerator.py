@@ -21,9 +21,9 @@ class CostTableGenerator(AbstractTableGenerator):
         return self._counterID
 
 
-    def __get_cost_type(self):
+    def __get_cost_type(self, costID):
         cost_types = self.settings["cost_types"]
-        return cost_types[random.randrange(0, len(cost_types))]
+        return cost_types[costID]
 
 
     def __get_amount(self):
@@ -39,11 +39,11 @@ class CostTableGenerator(AbstractTableGenerator):
         pass
 
 
-    def generate(self):
+    def generate(self, inputs):
         # to collection
         data = {
             "uuid": self.__get_uuid(),
-            "cost_type": self.__get_cost_type(),
+            "cost_type": self.__get_cost_type(inputs["costTypeID"]),
             "amount": self.__get_amount(),
             "description": self.__get_description()
         }

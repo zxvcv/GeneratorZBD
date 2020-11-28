@@ -1,7 +1,7 @@
 
 {
-    "birth_first_date": "1/1/1940 0:00",
-    "date_format": "%m/%d/%Y %H:%M",
+    "birth_first_date": "1940-1-1",
+    "date_format": "%Y-%m-%d",
     "max_rentals_for_customer": 10,
     "max_hire_length_months": 12,
     "start_hire_minus_delta_days": 7,
@@ -24,9 +24,9 @@
 
     "by_who": ["WORKER", "SERVICE", "CLIENT"],
 
-    "iterations": 50000,
-    "cars_num": 500,
-    "repairs_num": 200,
+    "iterations": 5000,
+    "cars_num": 200,
+    "repairs_num": 100,
 
     "tables": {
         "customer": {

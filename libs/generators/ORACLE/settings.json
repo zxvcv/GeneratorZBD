@@ -21,8 +21,8 @@
 
     "cost_types": ["CLEAN", "BASIC_FIX", "RENEW", "RENT_DAY", "RENT_WEEK", "RENT_MONTH", "BUY"],
 
-    "iterations": 50000,
-    "cars_num": 500,
+    "iterations": 5000,
+    "cars_num": 200,
 
     "tables": {
         "customer": {
@@ -44,7 +44,7 @@
         },
         "car_rential": {
             "data_file": "ORACLE_generated/Car_Rental.csv",
-            "keys": ["carid", "rentalid"]
+            "keys": ["carid", "carrental", "rentalid"]
         },
         "costs": {
             "data_file": "ORACLE_generated/Cost.csv",

@@ -24,8 +24,8 @@
         { "id": 3, "name": "LPG", "cost": "2.31" }
     ],
 
-    "iterations": 50000,
-    "cars_num": 500,
+    "iterations": 5000,
+    "cars_num": 200,
 
     "tables": {
         "client": {

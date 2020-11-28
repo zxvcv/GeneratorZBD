@@ -20,6 +20,10 @@ class CarRentalTableGenerator(AbstractTableGenerator):
         return carId
 
 
+    def __get_carRental(self):
+        return random.randrange(20, 100)
+
+
     def __get_rentalid(self, rentalId):
         return rentalId
 
@@ -32,6 +36,7 @@ class CarRentalTableGenerator(AbstractTableGenerator):
         # to collection
         data = {
             "carid": self.__get_carid(inputs["carid"]),
+            "carrental": self.__get_carRental(),
             "rentalid": self.__get_rentalid(inputs["rentalid"])
         }
 
@@ -43,6 +48,7 @@ class CarRentalTableGenerator(AbstractTableGenerator):
     def table_write(self, data):
         self._writer.writerow([
             data["carid"],
+            data["carrental"],
             data["rentalid"]
         ])
 

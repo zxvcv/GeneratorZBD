@@ -82,15 +82,19 @@ class Generator(AbstractGenerator):
             car = self.carGenerator.generate()
             self.carGenerator.table_write(car)
 
-            cost = self.costGenerator.generate()
-            self.costGenerator.table_write(cost)
+            for i in range(len(self.settings["cost_types"])):
+                inputsCost= {
+                    "costTypeID": i,
+                }
+                cost = self.costGenerator.generate(inputsCost)
+                self.costGenerator.table_write(cost)
 
-            inputsCarCost= {
-                "car_uuid": car["uuid"],
-                "cost_uuid": cost["uuid"],
-            }
-            carcost = self.carCostGenerator.generate(inputsCarCost)
-            self.carCostGenerator.table_write(carcost)
+                inputsCarCost= {
+                    "car_uuid": car["uuid"],
+                    "cost_uuid": cost["uuid"],
+                }
+                carcost = self.carCostGenerator.generate(inputsCarCost)
+                self.carCostGenerator.table_write(carcost)
         
         print("Repairs generating...")
         for i in tqdm(range(self._repairs_num)):
@@ -99,7 +103,7 @@ class Generator(AbstractGenerator):
 
             inputsRentalRepair = {
                 "rental_uuid": random.randrange(rents_num),
-                "repair_uuid": rental["uuid"],
+                "repair_uuid": repair["uuid"],
             }
             rentalrepair = self.rentalRepairGenerator.generate(inputsRentalRepair)
             self.rentalRepairGenerator.table_write(rentalrepair)
