@@ -21,13 +21,13 @@
 
     "cost_types": ["CLEAN", "BASIC_FIX", "RENEW", "RENT_DAY", "RENT_WEEK", "RENT_MONTH", "BUY"],
 
-    "iterations": 3000,
-    "cars_num": 100,
+    "iterations": 50000,
+    "cars_num": 500,
 
     "tables": {
         "customer": {
             "data_file": "ORACLE_generated/Customer.csv",
-            "keys": ["customerid", "name", "surname", "email", "married", "children", "gender", "birthDate",
+            "keys": ["customerid", "name", "surname", "email", "married", "children", "gender", "age",
                 "phonenumber"]
         },
         "rental": {

@@ -24,9 +24,9 @@
 
     "by_who": ["WORKER", "SERVICE", "CLIENT"],
 
-    "iterations": 3000,
-    "cars_num": 100,
-    "repairs_num": 50,
+    "iterations": 50000,
+    "cars_num": 500,
+    "repairs_num": 200,
 
     "tables": {
         "customer": {
@@ -54,8 +54,7 @@
         },
         "costs": {
             "data_file": "MYSQL_generated/Cost.csv",
-            "keys": ["uuid", "brand", "model", "buying_data", "last_check_date", "last_repair_date", "body_type",
-                "color", "fuel_type", "max_speed", "acceleration"]
+            "keys": ["uuid", "cost_type", "amount", "description"]
         },
         "car_cost": {
             "data_file": "MYSQL_generated/Car_Cost.csv",
@@ -63,7 +62,7 @@
         },
         "repairs": {
             "data_file": "MYSQL_generated/Repair.csv",
-            "keys": ["uuid", "by_who", "coast", "repair_date", "description"]
+            "keys": ["uuid", "by_who", "cost", "repair_date", "description"]
         },
         "rental_repair": {
             "data_file": "MYSQL_generated/Rental_Repair.csv",
