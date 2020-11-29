@@ -30,7 +30,7 @@
     "tables": {
         "client": {
             "data_file": "CSV_generated/Client.csv",
-            "keys": ["name","surname","birthDate","gender","maritialStatus","numberOfChildrens",
+            "keys": ["id","name","surname","birthDate","gender","maritialStatus","numberOfChildrens",
                 "priceFactor"]
         },
         "hires": {

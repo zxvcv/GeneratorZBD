@@ -95,6 +95,7 @@ class ClientTableGenerator(AbstractTableGenerator):
 
     def table_write(self, data):
         self._writer.writerow([
+            data["id"],
             data["name"],
             data["surname"],
             data["birthDate"].strftime(self._date_format),

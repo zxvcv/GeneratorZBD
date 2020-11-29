@@ -1,0 +1,53 @@
+
+{
+    "date_format": "%m/%d/%Y %H:%M",
+    "date_format_out": "%d-%m-%Y",
+
+    "absolute_src_tables_path": "C:/Users/ppisk/Documents/generator_ZDB/generator/CSV_generated/",
+
+    "src_tables": {
+        "client": {
+            "data_file": "Client.csv",
+            "keys": ["id","name","surname","birthDate","gender","maritialStatus","numberOfChildrens",
+                "priceFactor"]
+        },
+        "hires": {
+            "data_file": "Hire.csv",
+            "keys": ["hireStartTime","hireEndTime","carId","clientId","clientSatisfaction","roadLength",
+                "repairsCost"]
+        },
+        "cars": {
+            "data_file": "Car.csv",
+            "keys": ["id", "model", "brand", "bodyType", "color", "fuelId", "maxSpeed", "rentalPrice",
+                "theftProbability", "insuranceCost", "otherCosts", "dailyHireCost"]
+        },
+        "fuels": {
+            "data_file": "Fuel.csv",
+            "keys": ["id", "name", "cost"]
+        }
+    },
+
+    "absolute_out_tables_path": "C:/Users/ppisk/Documents/generator_ZDB/transformer/",
+
+    "out_tables": {
+        "rental_facts": {
+            "data_file": "CSV_transformed/RENTAL_FACTS.csv",
+            "keys": ["CLIENTID", "CARID", "RENTAL_TIME", "TOTAL_PRICE",
+                "AVG_SATISFACTION", "DAILY_INCOME", "WEAR_N_TEAR", "REPAIRS_COST",
+                "TOTAL_INCOME", "FROM_TIME"]
+        },
+        "car_dimension": {
+            "data_file": "CSV_transformed/CAR_DIMENSION.csv",
+            "keys": ["CARID", "BRAND", "MODELL"]
+        },
+        "client_dimension": {
+            "data_file": "CSV_transformed/CLIENT_DIMENSION.csv",
+            "keys": ["CLIENTID", "AGE_GROUP", "GENDER", "MARRIED", "CHILDREN"]
+        },
+        "car_details": {
+            "data_file": "CSV_transformed/CAR_DETAILS.csv",
+            "keys": ["CARTYPEID", "CARID", "BODYTYPE", "COLOR", "FUEL_TYPE",
+                "MAX_SPEED", "RENTAL_PRICE", "THEFT_PROB", "MAINTENANCE_COST"]
+        }
+    }
+}
