@@ -11,7 +11,7 @@ from ...helpers import get_file_lines, str_time_prop
 from ...AbstractTableTransformer import AbstractTableTransformer
 
 
-class CarTableTransformer(AbstractTableTransformer):
+class RentalTableTransformer(AbstractTableTransformer):
     def __init__(self, settings, tableName):
         super().__init__(settings, tableName)
 
@@ -36,8 +36,8 @@ class CarTableTransformer(AbstractTableTransformer):
 
 
     def __get_totalPrice(self, repairsCost, totalIncome):
-        totalPrice = int(totalIncome) - int(repairsCost)
-        return totalPrice
+        totalPrice = float(totalIncome) - int(repairsCost)
+        return "{:.2f}".format(totalPrice)
 
 
     def __get_avgSatisfaction(self, clientSatisfaction):
@@ -45,17 +45,19 @@ class CarTableTransformer(AbstractTableTransformer):
 
 
     def __get_dailyIncome(self, totalIncome, rentalTime):
+        if rentalTime == 0:
+            rentalTime = 1
         dailyIncome = float(totalIncome) / int(rentalTime)
-        return dailyIncome
+        return "{:.2f}".format(dailyIncome)
 
 
     def __get_repairsCost(self, repairsCost):
-        return repairsCost
+        return int(repairsCost)
 
 
     def __get_totalIncome(self, rentalTime, carDailyHireCost, clientPriceFactor):
-        totalIncome = rentalTime * carDailyHireCost * clientPriceFactor
-        return totalIncome
+        totalIncome = int(rentalTime) * int(carDailyHireCost) * float(clientPriceFactor)
+        return "{:.2f}".format(totalIncome)
 
 
     def __get_fromTime(self, hireEndTime):
@@ -79,7 +81,7 @@ class CarTableTransformer(AbstractTableTransformer):
             "CARID": self.__get_carID(src_data["carID"]),
             "RENTAL_TIME": rentalTime,
             "TOTAL_PRICE": self.__get_totalPrice(repairsCost, totalIncome),
-            "AVG_SATISFACTION": self.__get_avgSatisfaction(src_data["clientSatisfaction"]),
+            "AVG_SATISFACTION": self.__get_avgSatisfaction(src_data["clientStaisfaction"]),
             "DAILY_INCOME": self.__get_dailyIncome(totalIncome, rentalTime),
             "REPAIRS_COST": repairsCost,
             "TOTAL_INCOME": totalIncome,
@@ -99,7 +101,6 @@ class CarTableTransformer(AbstractTableTransformer):
             data["TOTAL_PRICE"],
             data["AVG_SATISFACTION"],
             data["DAILY_INCOME"],
-            data["WEAR_N_TEAR"],
             data["REPAIRS_COST"],
             data["TOTAL_INCOME"],
             data["FROM_TIME"]

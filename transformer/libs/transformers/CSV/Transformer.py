@@ -52,19 +52,29 @@ class Transformer(AbstractTransformer):
 
 
     def __del__(self):
+        self.rentalFileSrc.close()
         self.clientFileSrc.close()
+        self.carFileSrc.close()
+        self.fuelsFileSrc.close()
+
 
     def transform(self):
         clients = self.clientFileSrc.readlines()[1:]
         cars = self.carFileSrc.readlines()[1:]
         fuels = self.fuelsFileSrc.readlines()[1:]
 
+        counter = 0
         # for every rent
-        for rent in self.clientFileSrc:
+        for rent in self.rentalFileSrc:
+            if counter == 0:
+                counter += 1
+                continue
+            counter += 1
+
             spltRent = rent.split(';')
 
-            clientID = spltRent[3] #clientId
-            carID = spltRent[2] #carId
+            clientID = int(spltRent[3]) #clientId
+            carID = int(spltRent[2]) #carId
 
             client = clients[clientID].split(';')
             car = cars[carID].split(';')
@@ -90,11 +100,11 @@ class Transformer(AbstractTransformer):
                 "carId": transformedCar["CARID"],
                 "carBodyType": car[3], #bodyType
                 "carColor": car[4], #color
-                "carFuelType": fuels[car[5]].split(';')[1], #fuelName
+                "carFuelType": fuels[int(car[5])].split(';')[1], #fuelName
                 "carMaxSpeed": car[6], #maxSpeed
-                "carRentalprice": car[7], #rentalPrice
+                "carRentalprice": car[11], #dailyHireCost
                 "carInsuranceCost": car[9], #insuranceCost
-                "carOthercosts": car[10], #otherCosts
+                "carOtherCosts": car[10], #otherCosts
             }
             transformedCarDetails = self.carDetailsTransformer.transform(carDetailsData)
 
@@ -104,14 +114,15 @@ class Transformer(AbstractTransformer):
                 "carID": transformedCar["CARID"],
                 "hireStartTime": spltRent[0], #hireStartTime
                 "hireEndTime": spltRent[1], #hireEndTime
-                "staisfaction": spltRent[4], #clientSatisfaction
+                "clientStaisfaction": spltRent[4], #clientSatisfaction
                 "repairsCost": spltRent[6], #repairsCost
                 "carDailyHireCost": car[11], #dailyHireCost
                 "clientPriceFactor": client[7], #priceFactor
             }
-            transformedHire = self.hireTransformer.transform(dataHire)
-            self.hireTransformer.table_write(transformedHire)
-        
+            transformedHire = self.rentalTransformer.transform(dataHire)
+            self.rentalTransformer.table_write(transformedHire)
+
+        print(counter)#test
         self.carDetailsTransformer.table_write_all()
         self.carTransformer.table_write_all()
         self.clientTransformer.table_write_all()

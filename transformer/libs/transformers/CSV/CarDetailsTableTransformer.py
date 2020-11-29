@@ -53,32 +53,24 @@ class CarDetailsTableTransformer(AbstractTableTransformer):
 
 
     def __get_carRentalPrice(self, carRentalprice):
-        #700-1000,1001-1300,1301-1600,1601-1900,1901-2200,2201-2500,2501-2800,2801-3100
-        carRentalprice = int(carRentalprice)
+        carRentalprice = int(carRentalprice) / 10 #inna waluta
         rentalPriceGroup = "Unknown"
 
-        if carRentalprice <= 1000:
-            rentalPriceGroup = "700-1000"
-        elif carRentalprice <= 1300:
-            rentalPriceGroup = "1001-1300"
-        elif carRentalprice <= 1600:
-            rentalPriceGroup = "1301-1600"
-        elif carRentalprice <= 1900:
-            rentalPriceGroup = "1601-1900"
-        elif carRentalprice <= 2200:
-            rentalPriceGroup = "1901-2200"
-        elif carRentalprice <= 2500:
-            rentalPriceGroup = "2201-2500"
-        elif carRentalprice <= 2800:
-            rentalPriceGroup = "2501-2800"
-        elif carRentalprice > 2800:
-            rentalPriceGroup = "2801-3100"
+        if carRentalprice <= 20:
+            rentalPriceGroup = "0-20"
+        elif carRentalprice <= 40:
+            rentalPriceGroup = "21-40"
+        elif carRentalprice <= 60:
+            rentalPriceGroup = "41-60"
+        elif carRentalprice <= 80:
+            rentalPriceGroup = "61-80"
+        elif carRentalprice > 80:
+            rentalPriceGroup = "81-100"
 
         return rentalPriceGroup
 
 
     def __get_carMaintenanceCost(self, insuranceCost, otherCosts):
-        #0-2000,2001-4000,4001-6000,6001-8000,8001-10000
         maintenanceCost = int(insuranceCost) + int(otherCosts)
         maintenanceCostGroup = "Unknown"
 
@@ -125,8 +117,8 @@ class CarDetailsTableTransformer(AbstractTableTransformer):
             "FUEL_TYPE": self.__get_carFuelType(src_data["carFuelType"]),
             "MAX_SPEED": self.__get_carMaxSpeed(src_data["carMaxSpeed"]),
             "RENTAL_PRICE": self.__get_carRentalPrice(src_data["carRentalprice"]),
-            "MAINTENANCE_COST": self.__get_carMaintenanceCost(src_data["insuranceCost"],
-                src_data["otherCosts"])
+            "MAINTENANCE_COST": self.__get_carMaintenanceCost(src_data["carInsuranceCost"],
+                src_data["carOtherCosts"])
         }
 
         self.__asserts(data)

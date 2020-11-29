@@ -33,7 +33,7 @@
         "rental_facts": {
             "data_file": "CSV_transformed/RENTAL_FACTS.csv",
             "keys": ["CLIENTID", "CARID", "RENTAL_TIME", "TOTAL_PRICE",
-                "AVG_SATISFACTION", "DAILY_INCOME", "WEAR_N_TEAR", "REPAIRS_COST",
+                "AVG_SATISFACTION", "DAILY_INCOME", "REPAIRS_COST",
                 "TOTAL_INCOME", "FROM_TIME"]
         },
         "car_dimension": {
@@ -47,7 +47,7 @@
         "car_details": {
             "data_file": "CSV_transformed/CAR_DETAILS.csv",
             "keys": ["CARTYPEID", "CARID", "BODYTYPE", "COLOR", "FUEL_TYPE",
-                "MAX_SPEED", "RENTAL_PRICE", "THEFT_PROB", "MAINTENANCE_COST"]
+                "MAX_SPEED", "RENTAL_PRICE", "MAINTENANCE_COST"]
         }
     }
 }
